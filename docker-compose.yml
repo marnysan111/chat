@@ -1,0 +1,21 @@
+version: '3'
+
+services: 
+  chat:
+    build: ./chat
+    tty: true
+    ports:
+      - "8080:8080"
+    container_name: chat
+    depends_on: 
+      - mysql
+
+  mysql:
+    build: ./db
+    tty: true
+    ports: 
+      - "3306:3306"
+    container_name: mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: smoty
+      MYSQL_DATABASE: chat
